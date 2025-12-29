@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+model Service {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  duration    Int
+  price       Decimal
+  active      Boolean   @default(true)
+  bookings    Booking[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("services")
+}
+
+model Booking {
+  id          String        @id @default(uuid())
+  clientName  String
+  clientEmail String
+  startTime   DateTime
+  endTime     DateTime
+  status      BookingStatus @default(PENDING)
+  serviceId   String
+  service     Service       @relation(fields: [serviceId], references: [id], onDelete: Cascade) 
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("bookings")
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
