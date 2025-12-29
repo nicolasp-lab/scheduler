@@ -6,9 +6,11 @@ Um sistema full-stack de agendamento, focado em **Clean Architecture**, escalabi
 
 ![Status do Projeto](https://img.shields.io/badge/status-MVP%20Finalizado-green)
 
-## 🔗 Live Demo: 
+## 🔗 Live Demo: https://scheduler-occy.vercel.app/
 
 Acesso Admin:
+
+- URL: https://scheduler-occy.vercel.app/admin/login
 
 - Email: admin@admin.com
 
